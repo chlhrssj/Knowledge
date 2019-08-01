@@ -1,1 +1,34 @@
-test
+NotificationChannel
+
+Android O之后创建的notification都需要加入一个NotificationChannel,用于设置优先级，声音震动等等。
+需要注意：notificationChannel设置之后在手机里不可再更改，如果有需要更改需要修改字符串
+
+public static final String NOTIFICATION_CHANNEL_ID_INFO = "com.rssj.test";
+
+public void initChannel(){
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        NotificationManager nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        NotificationChannel notificationChannel = new NotificationChannel(NOTIFICATION_CHANNEL_ID_INFO, "绘本圈播放器", NotificationManager.IMPORTANCE_MIN);
+        nm.createNotificationChannel(notificationChannel);
+    }
+}
+
+private void showNotification() {
+    // The PendingIntent to launch our activity if the user selects this notification
+    PendingIntent contentIntent = PendingIntent.getActivity(this, 0, new Intent(this, MainActivity.class), 0);
+            // Set the info for the views that show in the notification panel.
+    build = new NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID_INFO);
+    notification = build
+                    .setSmallIcon(R.drawable.icon_launcher)  // the status icon
+                    .setWhen(System.currentTimeMillis())  // the time stamp
+                    .setContentIntent(contentIntent)  // The intent to send when the entry is clicked
+//                    .setCustomContentView(getSmallContentView())
+                    .setCustomBigContentView(getBigContentView())
+                    .setDefaults(NotificationCompat.FLAG_ONLY_ALERT_ONCE)
+                    .setPriority(NotificationCompat.PRIORITY_MAX)
+                    .setOngoing(true)
+                    .build();
+
+        // Send the notification.
+        startForeground(NOTIFICATION_ID, notification);
+    }
