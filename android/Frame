@@ -5,6 +5,7 @@ Android O之后创建的notification都需要加入一个NotificationChannel,用
 
 public static final String NOTIFICATION_CHANNEL_ID_INFO = "com.rssj.test"; //该id设置过一次就无法再设置，如果要用则要修改字符串
 
+
 public void initChannel(){
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
         NotificationManager nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
