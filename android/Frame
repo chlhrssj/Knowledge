@@ -39,3 +39,8 @@ private void showNotification() {
 混淆后不能读取某个控件的类有可能是没有把xml混淆处理好,需要加上
 -keep class org.xmlpull.v1.** { *; }
 -dontwarn org.xmlpull.v1.XmlSerializer
+
+###bean混淆
+内部bean类也需要-keep否则无法解析数据
+内部类混淆
+-keep class [packname].ojectname$*{*;}
