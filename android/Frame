@@ -40,7 +40,15 @@ private void showNotification() {
 -keep class org.xmlpull.v1.** { *; }
 -dontwarn org.xmlpull.v1.XmlSerializer
 
-###bean混淆
+### bean混淆
 内部bean类也需要-keep否则无法解析数据
 内部类混淆
 -keep class [packname].ojectname$*{*;}
+
+### Glide 坑
+Glide默认启动三级缓存，如果读取相同的url会使用缓存，这种情况应该要设定签名跳过缓存
+
+Glide.with(this)
+        .load(url)
+        .signature(new ObjectKey(System.currentTimeMillis()))//增加签名,跳过缓存重新获取
+        .into(view);
