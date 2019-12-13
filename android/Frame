@@ -3,7 +3,6 @@
 Android O之后创建的notification都需要加入一个NotificationChannel,用于设置优先级，声音震动等等。
 需要注意：notificationChannel设置之后在手机里不可再更改，如果有需要更改需要修改字符串
 
-```Java
 public static final String NOTIFICATION_CHANNEL_ID_INFO = "com.rssj.test"; //该id设置过一次就无法再设置，如果要用则要修改字符串
 
 public void initChannel(){
@@ -33,7 +32,6 @@ private void showNotification() {
         // Send the notification.
         startForeground(NOTIFICATION_ID, notification);
     }
-```
 
 ### xml混淆
 混淆后不能读取某个控件的类有可能是没有把xml混淆处理好,需要加上
