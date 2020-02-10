@@ -50,3 +50,6 @@ Glide.with(this)
         .load(url)
         .signature(new ObjectKey(System.currentTimeMillis()))//增加签名,跳过缓存重新获取
         .into(view);
+
+###BuildConfig.Debug
+BuildConfig.Debug只有在主module才有效，base_library等默认为false
